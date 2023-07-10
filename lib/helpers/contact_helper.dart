@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
@@ -27,7 +26,7 @@ class ContactHelper{
   }
 
   Future<Database> initDb() async{
-    final databasesPath = await getDataBasesPath();
+    final databasesPath = await getDatabasesPath();
     final path = join(databasesPath,'contacts.db');
 
     return await openDatabase(path, version: 1, onCreate: (Database db, int newVersion) async {
@@ -35,6 +34,11 @@ class ContactHelper{
         "CREATE TABLE $contactTable($idColumn INTEGER PRIMARY KEY, $nameColumn TEXT, $emailColumn TEXT,$phoneColumn TEXT, $imgColumn TEXT)"
       );
     });
+  }
+  Future<Contact> saveContact(Contact contact) async{
+    Database dbContact = await db;
+    contact.id = await dbContact.insert(contactTable, contact.toMap());
+    return contact;
   }
 }
 
@@ -59,7 +63,9 @@ class Contact{
       phoneColumn: phone,
       imgColumn: img
     };
-    map[idColumn] = id;
+    if(id != null){
+      map[idColumn] = id;
+    }
     return map;
   }
 
