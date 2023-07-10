@@ -23,4 +23,22 @@ class Contact{
     phone = map[phoneColumn];
     img = map[imgColumn];
   }
+  Map toMap() {
+    Map<String, dynamic> map = {
+      nameColumn: name,
+      emailColumn: email,
+      phoneColumn: phone,
+      imgColumn: img
+    };
+    if(id != null){
+      map[idColumn] = id;
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'Contact(id: $id, name: $name, email: $email, phone: $phone, img: $img)';
+  }
 }
