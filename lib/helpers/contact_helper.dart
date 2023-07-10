@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
+const String contactTable = 'contactTable';
 const String idColumn = 'idColumn';
 const String nameColumn = 'nameColumn';
 const String emailColumn = 'emailColumn';
@@ -13,6 +15,25 @@ class ContactHelper{
   ContactHelper.internal();
 
   Database _db;
+
+  get db{
+    if(_db != null){
+      return _db;
+    }else{
+      _db = initDb();
+    }
+  }
+
+  initDb() async{
+    final databasesPath = await getDataBasesPath();
+    final path = join(databasesPath,'contacts.db');
+
+    openDatabase(path, version: 1, onCreate: (Database db, int newVersion) async {
+      await db.execute(
+        "CREATE TABLE $contactTable($idColumn INTEGER PRIMARY KEY, $nameColumn TEXT, $emailColumn TEXT,$phoneColumn TEXT, $imgColumn TEXT)"
+      );
+    });
+  }
 }
 
 class Contact{
@@ -36,9 +57,7 @@ class Contact{
       phoneColumn: phone,
       imgColumn: img
     };
-    if(id != null){
-      map[idColumn] = id;
-    }
+    map[idColumn] = id;
     return map;
   }
 
