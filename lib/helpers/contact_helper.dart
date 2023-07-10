@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 const String idColumn = 'idColumn';
 const String nameColumn = 'nameColumn';
@@ -7,6 +8,11 @@ const String phoneColumn = 'phoneColumn';
 const String imgColumn = 'imgColumn';
 
 class ContactHelper{
+  static final ContactHelper _instance = ContactHelper.internal();
+  factory ContactHelper() => _instance;
+  ContactHelper.internal();
+
+  Database _db;
 }
 
 class Contact{
