@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'dart:async';
 
 const String contactTable = 'contactTable';
 const String idColumn = 'idColumn';
@@ -16,19 +17,20 @@ class ContactHelper{
 
   Database _db;
 
-  get db{
+  Future<Database> get db async {
     if(_db != null){
       return _db;
     }else{
-      _db = initDb();
+      _db = await initDb();
+      return _db;
     }
   }
 
-  initDb() async{
+  Future<Database> initDb() async{
     final databasesPath = await getDataBasesPath();
     final path = join(databasesPath,'contacts.db');
 
-    openDatabase(path, version: 1, onCreate: (Database db, int newVersion) async {
+    return await openDatabase(path, version: 1, onCreate: (Database db, int newVersion) async {
       await db.execute(
         "CREATE TABLE $contactTable($idColumn INTEGER PRIMARY KEY, $nameColumn TEXT, $emailColumn TEXT,$phoneColumn TEXT, $imgColumn TEXT)"
       );
