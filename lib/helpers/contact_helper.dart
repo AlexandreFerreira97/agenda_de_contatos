@@ -40,6 +40,20 @@ class ContactHelper{
     contact.id = await dbContact.insert(contactTable, contact.toMap());
     return contact;
   }
+
+  Future <Contact?> getContact(int id) async{
+    Database dbContact = await db;
+    List<Map> maps = await dbContact.query(contactTable, columns: [idColumn,
+    nameColumn,phoneColumn,emailColumn,imgColumn], where: '$idColumn  = ?',
+    whereArgs: [id]);
+    if(maps.isNotEmpty)
+    {
+        return Contact.fromMap(maps.first);
+    }
+    else{
+      return null;
+    }
+  }
 }
 
 class Contact{
