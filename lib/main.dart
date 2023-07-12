@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:agenda_de_contatos/pages/home.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Home(),
+    );
   }
 }
 
