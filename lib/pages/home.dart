@@ -10,28 +10,42 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  ContactHelper helper = ContactHelper();
+
+  ContactHelper  helper = ContactHelper();
+  List<Contact> contacts = [];
 
   @override
   void initState(){
     super.initState();
-    Contact c;
-    c.name = 'Alex';
-    c.email = '@'
-    c.phone = 3288;
-    c.img = 'teste';
-
-    helper.saveContact(c);
 
     helper.getAllContacts().then((list){
-      print(list);
+      setState(){
+        contacts = list;
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+        appBar: AppBar(title:
+        Text('Contatos'),
+          backgroundColor(Colors.red),
+          centerTitle: true,
+        )
+        backgroundColor(Colors.white),
+      floatingActionButton: FloatingActionButton(
+      onPressed: (){},
+      child: Icon(Icons.add),
+      backgroundColor(Colors.red),
+      ),
+      body: ListView.builder(
+        padding: EdgeInsetsAll(10.0),
+        itemCount: contatcs.length,
+        itemBuilder: (context, index){
 
+        }
+      ),
     );
   }
 }
