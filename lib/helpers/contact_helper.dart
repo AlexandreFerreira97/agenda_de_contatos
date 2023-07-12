@@ -80,6 +80,11 @@ class ContactHelper{
     Database dbContact = await db;
     return Sqflite.firstIntValue(await dbContact.rawQuery('SELECT COUNT(*) FROM $contactTable' ));
   }
+
+  Future closeDb() async {
+    Database dbContact = await db;
+    return await dbContact.close();
+  }
 }
 
 class Contact{
