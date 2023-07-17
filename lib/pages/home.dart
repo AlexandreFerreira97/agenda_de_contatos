@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:agenda_de_contatos/helpers/contact_helper.dart';
+import 'package:agenda_de_contatos/pages/contact_page.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda_de_contatos/helpers/contact_helper.dart';
 
@@ -89,4 +92,8 @@ class _HomeState extends State<Home> {
     );
   }
 
+  void _showContactPage(){
+    Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
+    );
+  }
 }
