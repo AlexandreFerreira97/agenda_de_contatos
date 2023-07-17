@@ -47,12 +47,12 @@ class _ContactPageState extends State<ContactPage> {
           children: [
             GestureDetector(
               child: Container(
-                width: 80.0,
-                height: 80.0,
+                width: 140.0,
+                height: 140.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: contacts[index].img != null ? FileImage(File(contacts[index].img)):
+                      image: _editContact.img != null ? FileImage(File(_editContact.img)):
                       AssetImage('images/person.png')
                   ),
                 ),
