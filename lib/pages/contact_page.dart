@@ -41,6 +41,26 @@ class _ContactPageState extends State<ContactPage> {
         backgroundColor: Colors.red,
         child: const Icon(Icons.save),
       ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            GestureDetector(
+              child: Container(
+                width: 80.0,
+                height: 80.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: contacts[index].img != null ? FileImage(File(contacts[index].img)):
+                      AssetImage('images/person.png')
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
