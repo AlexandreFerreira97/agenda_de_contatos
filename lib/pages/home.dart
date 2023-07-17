@@ -43,13 +43,13 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(10.0),
         itemCount: contatcs.length,
         itemBuilder: (context, index){
-
+          return _contactCard(context, index);
         }
       ),
     );
   }
 
-  Widget contactCard(BuildContext context, int index){
+  Widget _contactCard(BuildContext context, int index){
     return GestureDetector(
       child: Card(
         child: Padding(
@@ -70,15 +70,17 @@ class _HomeState extends State<Home> {
               const Padding(
                 padding: EdgeInsets.only(left: 10.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                   Text(contacts[index].name ?? '',
                     style: TextStyle(fontSize: 22.0,
-                    fontWeight: FontWeight.bold),
-                  ),
+                    fontWeight: FontWeight.bold),),
                   Text(contacts[index].email ?? '',
                     style: TextStyle(fontSize: 18.0,),
-                ),
+                  ),
                   Text(contacts[index].phone ?? '',
-                    style: TextStyle(fontSize: 18.0,),
+                    style: TextStyle(fontSize: 18.0,),),
+                  ],
               ),
             ],
           )
