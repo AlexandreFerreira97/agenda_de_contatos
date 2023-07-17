@@ -13,7 +13,7 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-
+  bool _userEdit = false;
   Contact? _editContact;
 
   @override
@@ -57,7 +57,16 @@ class _ContactPageState extends State<ContactPage> {
                   ),
                 ),
               ),
-            )
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Nome'),
+              onChanged: (text){
+                _userEdit = true;
+                setState(() {
+                  _editContact.name = text;
+                });
+              },
+            ),
           ],
         ),
       ),
