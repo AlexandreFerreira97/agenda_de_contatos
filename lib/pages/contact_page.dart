@@ -62,6 +62,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
             ),
             TextField(
+              controller: _nameController,
               decoration: InputDecoration(labelText: 'Nome'),
               onChanged: (text){
                 _userEdit = true;
@@ -71,6 +72,7 @@ class _ContactPageState extends State<ContactPage> {
               },
             ),
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(labelText: 'Email'),
               onChanged: (text){
                 _userEdit = true;
@@ -79,6 +81,7 @@ class _ContactPageState extends State<ContactPage> {
               keyboardType: TextInputType.emailAddress,
             ),
             TextField(
+              controller: _phoneController,
               decoration: InputDecoration(labelText: 'phone'),
               onChanged: (text){
                 _userEdit = true;
