@@ -3,6 +3,9 @@ import 'package:agenda_de_contatos/helpers/contact_helper.dart';
 
 class ContactPage extends StatefulWidget {
   //const ContactPage({Key? key, required this.contact}) : super(key: key);
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
 
   final Contact contact;
 
