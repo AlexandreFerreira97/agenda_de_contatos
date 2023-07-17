@@ -3,9 +3,6 @@ import 'package:agenda_de_contatos/helpers/contact_helper.dart';
 
 class ContactPage extends StatefulWidget {
   //const ContactPage({Key? key, required this.contact}) : super(key: key);
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
 
   final Contact contact;
 
@@ -16,6 +13,9 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
   bool _userEdit = false;
   Contact? _editContact;
 
@@ -28,6 +28,10 @@ class _ContactPageState extends State<ContactPage> {
       _editContact = Contact();
     }else{
       _editContact = Contact.fromMap(widget.contact.toMap());
+
+      _nameController.text = _editContact.name;
+      _emailController.text = _editContact.email;
+      _phoneController.text = _editContact.phone;
     }
   }
 
