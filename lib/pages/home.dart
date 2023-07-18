@@ -172,12 +172,12 @@ class _HomeState extends State<Home> {
     switch(result){
       case OrderOptions.orderaz:
         contacts.sort((a,b){
-          a.name.toLowerCase().compareTo(b.name.toLowerCase());
+          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
         });
         break;
       case OrderOptions.orderza:
         contacts.sort((a,b){
-          b.name.toLowerCase().compareTo(a.name.toLowerCase());
+          return b.name.toLowerCase().compareTo(a.name.toLowerCase());
         });
         break;
     }
