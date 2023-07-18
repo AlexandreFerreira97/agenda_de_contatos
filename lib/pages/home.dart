@@ -1,5 +1,5 @@
 import 'dart:js';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:agenda_de_contatos/helpers/contact_helper.dart';
 import 'package:agenda_de_contatos/pages/contact_page.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +102,8 @@ class _HomeState extends State<Home> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextButton(onPressed: (){
-
+                    launch('tel: ${contacts[index].phone}');
+                    Navigator.pop(context);
                   },
                       child: const Text('Ligar',
                         style: TextStyle(color:Colors.red,
