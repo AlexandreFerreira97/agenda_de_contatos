@@ -108,15 +108,20 @@ class _HomeState extends State<Home> {
                         style: TextStyle(color:Colors.red,
                             fontSize: 20.0) ,)),
                   TextButton(onPressed: (){
-
+                    Navigator.pop(context);
+                    _showContactPage(contact: contacts[index]);
                   },
                       child: const Text('Editar',
                         style: TextStyle(color:Colors.red,
                             fontSize: 20.0) ,)),
                   TextButton(onPressed: (){
-
+                    helper.deleteContact(contacts[index].id);
+                    setState(() {
+                      contacts.removeAt(index);
+                      Navigator.pop(context);
+                    });
                   },
-                      child: const Text('Ligar',
+                      child: const Text('Excluir',
                         style: TextStyle(color:Colors.red,
                             fontSize: 20.0) ,)),
                 ],
