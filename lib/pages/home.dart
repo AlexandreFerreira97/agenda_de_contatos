@@ -21,11 +21,7 @@ class _HomeState extends State<Home> {
   void initState(){
     super.initState();
 
-    helper.getAllContacts().then((list){
-      setState(){
-        contacts = list;
-      });
-    });
+   _getAllContacts();
   }
 
   @override
@@ -38,7 +34,7 @@ class _HomeState extends State<Home> {
         ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-      onPressed: (){},
+      onPressed: _showContactPage(),
       backgroundColor:Colors.red,
       child: Icon(Icons.add),
       ),
@@ -88,12 +84,29 @@ class _HomeState extends State<Home> {
             ],
           )
         ),
-      )
+      ),
+      onTap: (){
+          _showContactPage(contact: contacts(index));
+      },
     );
   }
 
-  void _showContactPage(){
-    Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
+  void _showContactPage() async {
+    final recContact = await Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
     );
+    if(recContact != null){
+      if(recContact != null){
+        await helper.updateContact(recContact);
+        _getAllContacts();
+      }
+    }
+  }
+
+  void _getAllContacts(){
+    helper.getAllContacts().then((list){
+      setState(){
+        contacts = list;
+      });
+    });
   }
 }
