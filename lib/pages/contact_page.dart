@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:agenda_de_contatos/helpers/contact_helper.dart';
+import 'dart:async';
 
 class ContactPage extends StatefulWidget {
   //const ContactPage({Key? key, required this.contact}) : super(key: key);
@@ -109,4 +110,29 @@ class _ContactPageState extends State<ContactPage> {
           ),
         ));
 }
-
+Future <bool> _requestPop(){
+    if(_userEdit){
+      showDialog(context: context,
+          builder: (context){
+        return const AlertDialog(
+          title: Text('Descartar Alterações?'),
+          content: Text('Se sair as alterações serão perdidas.'),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, 
+                child: Text('Cancelar')),
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+                child: Text('Sim'))
+          ],
+        );
+      });
+      return Future.value(false);
+    }else{
+      return Future.value(true);
+    }
+  }
+}
