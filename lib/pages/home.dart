@@ -86,9 +86,44 @@ class _HomeState extends State<Home> {
         ),
       ),
       onTap: (){
-          _showContactPage(contact: contacts(index));
+          _showOptions(context, index);
       },
     );
+  }
+
+  void _showOptions(BuildContext context, int index){
+    showModalBottomSheet(context: context,
+        builder: (context){
+          return BottomSheet(onClosing: (){},
+              builder: (context){
+            return Container(
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(onPressed: (){
+
+                  },
+                      child: const Text('Ligar',
+                        style: TextStyle(color:Colors.red,
+                            fontSize: 20.0) ,)),
+                  TextButton(onPressed: (){
+
+                  },
+                      child: const Text('Editar',
+                        style: TextStyle(color:Colors.red,
+                            fontSize: 20.0) ,)),
+                  TextButton(onPressed: (){
+
+                  },
+                      child: const Text('Ligar',
+                        style: TextStyle(color:Colors.red,
+                            fontSize: 20.0) ,)),
+                ],
+              ),
+            );
+          });
+        });
   }
 
   void _showContactPage() async {
