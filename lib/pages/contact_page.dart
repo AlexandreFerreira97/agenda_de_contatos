@@ -44,7 +44,11 @@ class _ContactPageState extends State<ContactPage> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          if(_editContact.name.isNotEmpty){
+            Navigator.pop(context , _editContact);
+          }
+        },
         backgroundColor: Colors.red,
         child: const Icon(Icons.save),
       ),
